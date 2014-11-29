@@ -64,6 +64,7 @@ shift $((OPTIND-1))
 # Need a better way to populate the potential mount points
 # Works best with password-less ssh access.
 # Mounting takes a significant amount of time and hangs the shell. Ugh.
+[[ -d ${here}/mnt ]] || mkdir --parent ${here}/mnt 
 afuse  -o nonempty -o exact_getattr -o mount_template="sshfs %r:/ %m" -o unmount_template="fusermount -quz %m" ${here}/mnt 
 
 
